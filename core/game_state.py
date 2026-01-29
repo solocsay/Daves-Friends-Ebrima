@@ -60,5 +60,5 @@ class GameState:
     def play(self, user_id: int, card_index: int, choose_color: Color | None = None) -> None:
         pass
 
-    def draw_and_pass(self, user_id: int, amt: int = 1) -> list[card]:
+    def draw_and_pass(self, user_id: int, amt: int = 1) -> list[Card]:
         pass
