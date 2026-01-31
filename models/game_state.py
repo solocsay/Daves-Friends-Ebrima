@@ -200,8 +200,29 @@ class GameState:
                     card = self.state["deck"].pop()
                     self.state["hands"].append(card)
 
-    def _draw_first_valid_start_card(self, draw_pile: list[Card], discard_pile: list[Card]) -> Card:
-        raise NotImplementedError
+        def _draw_first_valid_start_card(self, draw_pile: list[Card], discard_pile: list[Card]) -> Card:
+        if not draw_pile:
+            raise GameError("Deck is empty; can't pick a start card.")
+
+        rejected: list[Card] = []
+
+        while draw_pile:
+            card = draw_pile.pop()
+
+            if isinstance(card, Number):
+                discard_pile.append(card)
+
+                if rejected:
+                    draw_pile.extend(rejected)
+                    self._rng.shuffle(draw_pile)
+
+                return card
+
+            rejected.append(card)
+
+        draw_pile.extend(rejected)
+        self._rng.shuffle(draw_pile)
+        raise GameError("Couldn't find a valid start Number card in the deck.")
 
     def _apply_effects_and_advance(self, played: Card, res: PlayResult) -> None:
         players = self.state["players"]
