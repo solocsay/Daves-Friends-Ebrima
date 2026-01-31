@@ -39,6 +39,25 @@ async def on_ready() -> None:
         print(f"Synced commands globally as {bot.user}")
 
 
+@bot.command()
+async def start(ctx: commands.Context[commands.Bot]):
+    # creates the first public message
+    global status_message, turn
+    turn = 1
+    status_message = await ctx.send(render_status())
+
+@bot.command()
+async def next(ctx: commands.Context[commands.Bot]):
+    # edits the same message instead of sending a new one
+    global status_message, turn
+
+    if status_message is None:
+        await ctx.send("No game started yet. Run /start first.")
+        return
+
+    turn += 1
+    await status_message.edit(content=render_status())
+
 token = os.getenv("DISCORD_TOKEN")
 if not token:
     raise RuntimeError("DISCORD_TOKEN is not set. Check your .env file.")
