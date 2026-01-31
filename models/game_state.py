@@ -189,18 +189,21 @@ class GameState:
         return DrawResult(user_id=user_id, drawn=drawn, next_player=self.current_player())
 
     def _deal_starting_hands(self, players: list[int], draw_pile: list[Card]) -> dict[int, list[Card]]:
-        for player in self.players():
-            if player not in self.state["hands"]:
-                self.state["hands"]["players"] = []
+        cards_per_player = 7
+        hands: dict[int, list[Card]] = {pid: [] for pid in players}
 
-                for _ in range(cards_per_player = 7):
-                    if not self.state["deck"]:
-                        break
-                    
-                    card = self.state["deck"].pop()
-                    self.state["hands"].append(card)
+        for _ in range(cards_per_player):
+            for pid in players:
+                if not draw_pile:
+                    break
+                hands[pid].append(draw_pile.pop())
 
-        def _draw_first_valid_start_card(self, draw_pile: list[Card], discard_pile: list[Card]) -> Card:
+            if not draw_pile:
+                break
+
+        return hands
+
+    def _draw_first_valid_start_card(self, draw_pile: list[Card], discard_pile: list[Card]) -> Card:
         if not draw_pile:
             raise GameError("Deck is empty; can't pick a start card.")
 
