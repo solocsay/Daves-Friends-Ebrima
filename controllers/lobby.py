@@ -1,8 +1,8 @@
-
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Dict, List
+from deck import Card, Number, Skip, Reverse, DrawTwo, Wild, DrawFourWild
 
 import discord
 from discord import app_commands
@@ -20,6 +20,24 @@ def require_channel_id(interaction: discord.Interaction) -> int:
     if cid is None:
         raise RuntimeError("This command must be used in a server channel (not DMs).")
     return cid
+
+
+def format_card(card: Card | None) -> str:
+    if card is None:
+        return "(none)"
+    if isinstance(card, Number):
+        return f"{card.color.name} {card.number}"
+    if isinstance(card, Skip):
+        return f"{card.color.name} SKIP"
+    if isinstance(card, Reverse):
+        return f"{card.color.name} REVERSE"
+    if isinstance(card, DrawTwo):
+        return f"{card.color.name} DRAW2"
+    if isinstance(card, DrawFourWild):
+        return f"DRAW4 ({card.color.name if card.color else 'unpicked'})"
+    if isinstance(card, Wild):
+        return f"WILD ({card.color.name if card.color else 'unpicked'})"
+    return str(card)
 
 
 @dataclass
@@ -197,7 +215,70 @@ class LobbyCog(commands.Cog):
                 await interaction.response.send_message(str(e), ephemeral=True)
                 return
 
-            await interaction.response.send_message("Lobby started.")
+            top = lobby.game.top_card()
+            turn = lobby.game.current_player()
+            hand_sizes = ", ".join(
+                f"{mention(pid)}={len(lobby.game.hand(pid))}" for pid in lobby.game.players()
+            )
+
+            await interaction.response.send_message(
+                "Lobby started.\n"
+                f"Phase: {lobby.game.phase().name}\n"
+                f"Top card: {format_card(top)}\n"
+                f"Turn: {mention(turn)}\n"
+                f"Hands: {hand_sizes}"
+            )
+
+    @app_commands.command(name="top", description="Show top card + whose turn it is.")
+    async def top(self, interaction: discord.Interaction) -> None:
+        cid = require_channel_id(interaction)
+        lobby = lobbies.get(cid)
+        if lobby is None:
+            await interaction.response.send_message("No lobby in this channel. Use /create.", ephemeral=True)
+            return
+        if lobby.game.phase() == Phase.LOBBY:
+            await interaction.response.send_message("Game hasn't started yet. Use /start.", ephemeral=True)
+            return
+
+        await interaction.response.send_message(
+            f"Top card: {format_card(lobby.game.top_card())}\n"
+            f"Turn: {mention(lobby.game.current_player())}"
+        )
+
+    @app_commands.command(name="hand", description="Show your hand (ephemeral).")
+    async def hand(self, interaction: discord.Interaction) -> None:
+        cid = require_channel_id(interaction)
+        uid = interaction.user.id
+        lobby = lobbies.get(cid)
+        if lobby is None:
+            await interaction.response.send_message("No lobby in this channel.", ephemeral=True)
+            return
+        if lobby.game.phase() != Phase.PLAYING:
+            await interaction.response.send_message("Game is not currently playing.", ephemeral=True)
+            return
+
+        cards = lobby.game.hand(uid)
+        lines = [f"{i}: {format_card(c)}" for i, c in enumerate(cards)]
+        await interaction.response.send_message("Your hand:\n" + "\n".join(lines), ephemeral=True)
+
+    @app_commands.command(name="draw", description="Draw 1 card and pass.")
+    async def draw(self, interaction: discord.Interaction) -> None:
+        cid = require_channel_id(interaction)
+        uid = interaction.user.id
+        lobby = lobbies.get(cid)
+        if lobby is None:
+            await interaction.response.send_message("No lobby in this channel.", ephemeral=True)
+            return
+
+        try:
+            res = lobby.game.draw_and_pass(uid, amt=1)
+        except GameError as e:
+            await interaction.response.send_message(str(e), ephemeral=True)
+            return
+
+        await interaction.response.send_message(
+            f"{mention(uid)} drew 1 and passed.\nNext: {mention(res.next_player)}"
+        )
 
     @app_commands.command(name="end", description="End the lobby (host only).")
     async def end(self, interaction: discord.Interaction) -> None:

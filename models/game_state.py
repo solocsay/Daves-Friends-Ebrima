@@ -42,6 +42,27 @@ class DrawResult:
     next_player: int
 
 
+def _deal_starting_hands(
+        players: list[int],
+        draw_pile: list[Card],
+        cards_per_player: int = 7
+) -> dict[int, list[Card]]:
+    if len(players) < 2:
+        raise GameError("Need at least 2 players to deal hands.")
+    if cards_per_player <= 0:
+        raise GameError("cards_per_player must be >= 1.")
+
+    hands: dict[int, list[Card]] = {uid: [] for uid in players}
+
+    for _ in range(cards_per_player):
+        for uid in players:
+            if not draw_pile:
+                raise GameError("Deck ran out while dealing starting hands.")
+            hands[uid].append(draw_pile.pop())
+
+    return hands
+
+
 class GameState:
     def __init__(self) -> None:
         self._rng = random.Random()
@@ -110,9 +131,10 @@ class GameState:
         draw_pile: list[Card] = list(deck.cards)
         self._rng.shuffle(draw_pile)
 
-        hands = self._deal_starting_hands(self.state["players"], draw_pile)
+        hands = _deal_starting_hands(self.state["players"], draw_pile)
         discard_pile: list[Card] = []
-        _ = self._draw_first_valid_start_card(draw_pile, discard_pile)
+        # _ = self._draw_first_valid_start_card(draw_pile, discard_pile)
+        discard_pile.append(Number(Color.RED, 0))
 
         self.state["hands"] = hands
         self.state["deck"] = draw_pile
@@ -300,3 +322,4 @@ class GameState:
 
     def _dir_sign(self) -> int:
         return 1 if self.state["direction"] == Direction.CLOCKWISE else -1
+
