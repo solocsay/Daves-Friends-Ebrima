@@ -18,6 +18,9 @@ async def ping(interaction: discord.Interaction, text: str | None = None) -> Non
     msg = "pong" if not text else f"pong {text}"
     await interaction.response.send_message(msg)
 
+@bot.tree.command(name="uno", description="Announce that a player has 1 card left.")
+async def uno(interaction: discord.Interaction) -> None:
+    await interaction.response.send_message(f"UNO! {interaction.user.mention} has 1 card left.")
 
 @bot.event
 async def on_ready() -> None:
