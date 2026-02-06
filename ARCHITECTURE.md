@@ -5,6 +5,7 @@
 
 Figure X  
 ![<diagram name>](<path or link to image>)
+<img width="286" height="232" alt="image" src="https://github.com/user-attachments/assets/7e0f9dae-f159-4fc5-b3b4-bc962673371e" />
 
 ---
 
