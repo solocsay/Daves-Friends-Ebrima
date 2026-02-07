@@ -30,5 +30,10 @@ The class diagram shows the relationship between the different classes used to c
 <img width="1694" height="1641" alt="Class Diagram" src="https://github.com/user-attachments/assets/6945b068-7b02-4758-82f2-f1961371e846" />
 
 ---
-## <Diagram Type> (<Name>)
-<1–2 sentences explaining what this diagram shows>
+## Activity Diagram (Ebrima Ceesay)
+The diagram shows the step-by-step flow for a player using the /play command. It demonstrates how the decision steps and the game rules are executed in order for example if the move is valid, the bot updates the game state, applies any special card effects, advances the turn, and checks for a win.
+
+<img width="1046" height="1366" alt="image" src="https://github.com/user-attachments/assets/3e7b5af5-7cd9-432f-9569-bf5201026660" />
+<img width="1021" height="1353" alt="image" src="https://github.com/user-attachments/assets/dc0418af-f65d-4576-bab5-a7b3acd9795c" />
+
+
