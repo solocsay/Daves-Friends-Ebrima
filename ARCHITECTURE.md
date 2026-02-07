@@ -18,10 +18,10 @@ The data flow diagram shows how Discord users interact with our bot through slas
 <img width="1584" height="752" alt="image" src="https://github.com/user-attachments/assets/cabd33b5-82ae-4aa0-8c34-383a931c3b68" />
 
 ---
-## Use Case Diagram (Khalid Abdullahi)
-The diagram shows how players interact with the UNO Discord Bot through lobby commands, gameplay commands, and game logic based on what we have now.
+## Class Diagram (Anna Liberty)
+The class diagram shows the relationship between the different classes used to construct the bot. These are roughly divided into those related to the Deck class and those related to the GameState class.
 
-<img width="732" height="1148" alt="image" src="https://github.com/user-attachments/assets/ee8f1b3a-7927-4bb7-89be-6158053b463c" />
+<img width="1694" height="1641" alt="Class Diagram" src="https://github.com/user-attachments/assets/6945b068-7b02-4758-82f2-f1961371e846" />
 
 ---
 ## <Diagram Type> (<Name>)
