@@ -1,7 +1,7 @@
 ## Use Case Diagram (Khalid Abdullahi)
 The diagram shows how players interact with the UNO Discord Bot through lobby commands, gameplay commands, and game logic based what we have now.
 Figure X  
-![UNO Bot Use Case Diagram](use_case.png)
+![UNO Bot Use Case Diagram](Usecase.png)
 
 ---
 
