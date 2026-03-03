@@ -429,10 +429,14 @@ class GameState:
         refill = discard_pile[:-1]
         discard_pile[:] = [top]
 
+        # Reset Wild colors before recycling discard back into the deck
+        for c in refill:
+            if isinstance(c, (Wild, DrawFourWild)):
+                c.color = None
+
         self._rng.shuffle(refill)
         draw_pile.extend(refill)
 
-        # now must have cards
         return draw_pile.pop()
 
     def _dir_sign(self) -> int:

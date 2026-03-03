@@ -123,7 +123,10 @@ class LobbyUI(Interactions):
             \nLink to Game: https://discord.com/channels/{guild}/{cid}/{lobby.main_message}""",
             )
 
-            await user.send(embed=embed)
+            try:
+                await user.send(embed=embed)
+            except (discord.Forbidden, discord.HTTPException):
+                pass
 
         cog = interaction.client.get_cog("UnoCog")
         if cog:

@@ -153,5 +153,9 @@ class GameUI(Interactions):
             await interaction.response.send_message(embeds=[embed], ephemeral=e.private)
             return
 
-        await self._renderer.update_from_interaction(interaction, self.lobby)
-        await interaction.followup.send("🛑 Game ended.")
+        try:
+            await interaction.message.edit(view=None)
+        except (discord.Forbidden, discord.HTTPException):
+            pass
+
+        await interaction.response.send_message("🛑 Game ended.", ephemeral=False)

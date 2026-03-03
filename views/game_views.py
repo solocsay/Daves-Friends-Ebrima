@@ -21,20 +21,19 @@ from utils.utils import mention
 from views.base_views import BaseViews
 
 def _card_display(card: Card) -> str:
-    card = str(card)
     if isinstance(card, Number):
-        card = f"{COLOR_EMOJIS[card.color]}{NUMBER_EMOJIS[card.number]}"
+        return f"{COLOR_EMOJIS[card.color]}{NUMBER_EMOJIS[card.number]}"
     if isinstance(card, Skip):
-        card = f"{COLOR_EMOJIS[card.color]}⏭️"
+        return f"{COLOR_EMOJIS[card.color]}⏭️"
     if isinstance(card, Reverse):
-        card = f"{COLOR_EMOJIS[card.color]}🔄"
+        return f"{COLOR_EMOJIS[card.color]}🔄"
     if isinstance(card, DrawTwo):
-        card = f"{COLOR_EMOJIS[card.color]}➕2"
+        return f"{COLOR_EMOJIS[card.color]}➕2"
     if isinstance(card, Wild):
-        card = f"🌈{COLOR_EMOJIS[card.color] if card.color else ''}"
+        return f"🌈{COLOR_EMOJIS[card.color] if card.color else ''}"
     if isinstance(card, DrawFourWild):
-        card = f"➕4🌈{COLOR_EMOJIS[card.color] if card.color else ''}"
-    return card
+        return f"➕4🌈{COLOR_EMOJIS[card.color] if card.color else ''}"
+    return str(card)
 
 
 class GameViews(BaseViews):

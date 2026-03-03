@@ -7,6 +7,7 @@ from typing import Any
 from discord.interactions import User
 
 from models.deck import Color
+from models.game_state import Phase
 from services.lobby_service import LobbyService
 
 class GameService:
@@ -28,8 +29,9 @@ class GameService:
         lobby = self.lobby_service.get_lobby(channel_id)
         lobby.game.play(user_id, card_index, color)
 
-        if lobby.game.is_bot(lobby.game.current_player()):
-            lobby.game.play.play_bot()
+        # autoplay bots (supports bot chains)
+        while lobby.game.phase() == Phase.PLAYING and lobby.game.is_bot(lobby.game.current_player()):
+            lobby.game.play_bot()
 
     def draw(self, channel_id: int, user_id: int):
         """

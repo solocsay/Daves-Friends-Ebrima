@@ -24,11 +24,16 @@ class LobbyService:
         """
 
         if self._lobby_repo.exists(channel_id):
-            raise GameError(
-                "A lobby already exists in this channel. Join this lobby or skedaddle!",
-                private=True,
-                title="Lobby Exists",
-            )
+            existing = self._lobby_repo.get(channel_id)
+
+            if existing.game.phase() == Phase.FINISHED:
+                self._lobby_repo.delete(channel_id)
+            else:
+                raise GameError(
+                    "A lobby already exists in this channel. Join this lobby or skedaddle!",
+                    private=True,
+                    title="Lobby Exists",
+                )
 
         self._lobby_repo.set(channel_id, user, GameState())
         self._lobby_repo.get(channel_id).game.add_player(user.id)
