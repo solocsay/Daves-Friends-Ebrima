@@ -63,3 +63,10 @@ class GameService:
         Deletes the current game for a channel.
         """
         self.lobby_service.disband_lobby(channel_id, caller)
+        
+    def kick_player(self, channel_id: int, target_id: int):
+        """
+        Removes a player from the game in a lobby.
+        """
+        lobby = self.lobby_service.get_lobby(channel_id)
+        lobby.game.kick_player(target_id)
