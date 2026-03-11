@@ -30,7 +30,7 @@ class LobbyViews(BaseViews):
             author=lobby.user,
         )
 
-        users_str = mention(lobby.user.id) + "(Host)"
+        users_str = mention(lobby.user.id) + " (Host)"
 
         for player in lobby.game.players():
             if player == lobby.user.id:
