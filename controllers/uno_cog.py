@@ -94,6 +94,8 @@ class UnoCog(commands.Cog):
         """
         Plays a card by index, choosing a color if it's a wild.
         """
+
+        # show "Bot is thinking..."
         await interaction.response.defer(ephemeral=True)
 
         cid = require_channel_id(interaction)
@@ -109,36 +111,43 @@ class UnoCog(commands.Cog):
                     private=True,
                 )
 
-            if card_index is None and color is None:
-                raise GameError(
-                    "You must specify either a card index or a color.",
-                    title="Game Error",
-                    private=True,
-                )
-
-            self.game_service.play_card(
+            result = self.game_service.play_card(
                 cid,
                 interaction.user.id,
                 card_index,
                 Color[color.value.upper()] if color else None,
             )
+
+            # store last move so the embed can show it
+            lobby.last_move = result
+
         except GameError as e:
             embed = self._renderer.lobby_views.error_embed(
-                "Lobby Exists" if e.title == "" else e.title, str(e)
+                "Lobby Exists" if e.title == "" else e.title,
+                str(e),
             )
 
             await interaction.followup.send(embeds=[embed], ephemeral=e.private)
             return
 
+        # update the main game embed
         await self._renderer.update_by_message_id(self.bot, cid, main_msg_id, lobby)
+
+        # notify next player
         await self.dm_current_player_turn(lobby, cid)
+
+        # restart AFK timer
         self.start_afk_timer(cid, lobby)
+
+        # confirmation message
         await interaction.followup.send("Successfully played card!", ephemeral=True)
 
+        # send updated hand DM
         bot = interaction.client
         guild = interaction.guild.id
         user = await bot.fetch_user(interaction.user.id)
         hand = lobby.game.hand(interaction.user.id)
+
         embed = self._renderer.hand_views.hand_embed(
             hand,
             optional_message=f"""This is your new hand after your latest action.
@@ -203,6 +212,12 @@ class UnoCog(commands.Cog):
         ):
             try:
                 game.draw_and_pass(player_id)
+
+                # update last move
+                lobby.last_move = {
+                    "type": "draw",
+                    "player": player_id
+                }
 
                 channel = self.bot.get_channel(channel_id)
                 if channel:

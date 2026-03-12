@@ -28,13 +28,15 @@ class GameService:
         """
 
         lobby = self.lobby_service.get_lobby(channel_id)
-        lobby.game.play(user_id, card_index, color)
+        result = lobby.game.play(user_id, card_index, color)
 
         # autoplay bots (supports bot chains)
         while lobby.game.phase() == Phase.PLAYING and lobby.game.is_bot(
             lobby.game.current_player()
         ):
             lobby.game.play_bot()
+
+        return result
 
     def draw(self, channel_id: int, user_id: int):
         """

@@ -73,6 +73,23 @@ class GameViews(BaseViews):
 
         embed.add_field(name="Players", value=players_turn, inline=False)
 
+        if hasattr(lobby, "last_move"):
+            move = lobby.last_move
+
+            # draw move
+            if isinstance(move, dict) and move.get("type") == "draw":
+                text = f"{mention(move['player'])} drew a card"
+
+            # play move
+            else:
+                text = f"{mention(move.played_by)} played {_card_display(move.played_card)}"
+
+            embed.add_field(
+                name="Last Move",
+                value=text,
+                inline=False,
+            )
+
         afk_deadline_attr = getattr(lobby.game, "afk_deadline", None)
         afk_deadline = (
             afk_deadline_attr() if callable(afk_deadline_attr) else afk_deadline_attr
