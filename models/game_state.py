@@ -228,6 +228,34 @@ class GameState:
         self.state["players"].remove(user_id)
         self.state["hands"].pop(user_id, None)
 
+    def kick_player(self, user_id: int) -> None:
+        """
+        Removes a player from the game during play. Adjusts turn order safely.
+        """
+        players = self.state["players"]
+
+        if user_id not in players:
+            raise GameError("Player not in game.")
+
+        idx = players.index(user_id)
+
+        players.remove(user_id)
+        self.state["hands"].pop(user_id, None)
+
+        # If only one player remains, end the game
+        if len(players) <= 1:
+            self.state["phase"] = Phase.FINISHED
+            if players:
+                self.state["winner"] = players[0]
+            return
+
+        turn_index = self.state["turn_index"]
+
+        if idx < turn_index:
+            self.state["turn_index"] -= 1
+        elif idx == turn_index:
+            self.state["turn_index"] %= len(players)
+
     def add_bot(self) -> None:
         """
         Adds a new bot to the game (with a negative user ID)
