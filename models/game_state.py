@@ -31,6 +31,7 @@ class Phase(Enum):
     PLAYING is when the game is being played and players can play cards. FINISHED is when the game
     has ended and a winner has been declared.
     """
+
     LOBBY = auto()
     PLAYING = auto()
     FINISHED = auto()
@@ -40,6 +41,7 @@ class Direction(Enum):
     """
     The current direction of turn progression.
     """
+
     COUNTER_CLOCKWISE = auto()
     CLOCKWISE = auto()
 
@@ -48,6 +50,7 @@ class GameError(Exception):
     """
     Describes an error that has occurred with the game.
     """
+
     def __init__(self, msg: str, private: bool = False, title: str = ""):
         super().__init__(msg)
         self.private = private
@@ -59,6 +62,7 @@ class PlayResult:
     """
     The result of a played card, containing information about its effects on the game.
     """
+
     # pylint: disable=too-many-instance-attributes
     played_by: int
     played_card: Card
@@ -78,6 +82,7 @@ class DrawResult:
     The result of drawing cards, containing information about who drew the cards and whose turn is
     next.
     """
+
     user_id: int
     drawn: list[Card]
     next_player: int
@@ -124,7 +129,7 @@ class GameState:
             "turn_index": 0,  # index representing which users turn it is
             "turn_count": 0,  # counter representing the current turn #
             "afk_deadline": None,  # AFK timer deadline (UTC datetime)
-            "uno_grace_until": 0.0, # timestamp when others may start catching
+            "uno_grace_until": 0.0,  # timestamp when others may start catching
             "uno_vulnerable": None,  # user_id who has 1 card and can be caught
             "direction": Direction.CLOCKWISE,
             "winner": None,
@@ -551,7 +556,9 @@ class GameState:
         return time.monotonic()
 
     def _set_afk_deadline(self, seconds: int = 60) -> None:
-        self.state["afk_deadline"] = datetime.now(timezone.utc) + timedelta(seconds=seconds)
+        self.state["afk_deadline"] = datetime.now(timezone.utc) + timedelta(
+            seconds=seconds
+        )
 
     def _clear_afk_deadline(self) -> None:
         self.state["afk_deadline"] = None

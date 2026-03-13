@@ -159,7 +159,7 @@ class UnoCog(commands.Cog):
         except (discord.Forbidden, discord.HTTPException):
             pass
 
-# pylint: disable=duplicate-code
+    # pylint: disable=duplicate-code
     @app_commands.command(name="kick", description="Kick a player from the game.")
     async def kick(self, interaction: discord.Interaction, player: discord.Member):
         """Allows the host to remove a player from the current game."""
@@ -172,33 +172,27 @@ class UnoCog(commands.Cog):
 
             if interaction.user.id != lobby.user.id:
                 raise GameError(
-                    "Only the host can kick players.",
-                    private=True,
-                    title="Host Only"
+                    "Only the host can kick players.", private=True, title="Host Only"
                 )
 
             if player.id not in lobby.game.players():
                 raise GameError(
                     "That player is not in the game.",
                     private=True,
-                    title="Player Not Found"
+                    title="Player Not Found",
                 )
 
             self.game_service.kick_player(cid, player.id)
 
         except GameError as e:
             embed = self._renderer.lobby_views.error_embed(
-                "Game Error" if e.title == "" else e.title,
-                str(e)
+                "Game Error" if e.title == "" else e.title, str(e)
             )
             await interaction.followup.send(embeds=[embed], ephemeral=e.private)
             return
 
         await self._renderer.update_by_message_id(
-            self.bot,
-            cid,
-            lobby.main_message,
-            lobby
+            self.bot, cid, lobby.main_message, lobby
         )
 
         try:
@@ -207,8 +201,7 @@ class UnoCog(commands.Cog):
             pass
 
         await interaction.followup.send(
-            f"{player.display_name} was kicked from the game.",
-            ephemeral=True
+            f"{player.display_name} was kicked from the game.", ephemeral=True
         )
 
     async def dm_current_player_turn(self, lobby, channel_id: int) -> None:
@@ -266,10 +259,7 @@ class UnoCog(commands.Cog):
                 game.draw_and_pass(player_id)
 
                 # update last move
-                lobby.last_move = {
-                    "type": "draw",
-                    "player": player_id
-                }
+                lobby.last_move = {"type": "draw", "player": player_id}
 
                 channel = self.bot.get_channel(channel_id)
                 if channel:
