@@ -240,7 +240,7 @@ class UnoCog(commands.Cog):
         """
         Skips a player's turn if they don't play in 60 seconds.
         """
-        await asyncio.sleep(60)
+        await asyncio.sleep(5)
 
         try:
             lobby = self.lobby_service.get_lobby(channel_id)
@@ -261,6 +261,10 @@ class UnoCog(commands.Cog):
                 # update last move
                 lobby.last_move = {"type": "draw", "player": player_id}
 
+                # increment AFK count
+                game.state["afk_counts"][player_id] = game.state["afk_counts"].get(player_id, 0) + 1
+                afk_count = game.state["afk_counts"][player_id]
+
                 channel = self.bot.get_channel(channel_id)
                 if channel:
                     await channel.send(
@@ -273,8 +277,33 @@ class UnoCog(commands.Cog):
                         lobby.main_message,
                         lobby,
                     )
+
+                if afk_count >= 5:
+                    self.game_service.kick_player(channel_id, player_id)
+
+                    try:
+                        user = await self.bot.fetch_user(player_id)
+                        await user.send(
+                            "You were kicked from the UNO game for being AFK 5 times."
+                        )
+                    except (discord.Forbidden, discord.HTTPException):
+                        pass
+
+                    if channel:
+                        await channel.send(f"<@{player_id}> has been kicked for being AFK for too long.")
+
+                    # disband lobby
+                    if not lobby.game.players():
+                        if channel:
+                            await channel.send("All players were AFK. Game disbanded.")
+                        self.lobby_service.disband_lobby(channel_id, lobby.user)
+                        return
+
             except GameError as e:
                 print(f"AFK Timer Error: {e}")
+
+        # restart timer
+        self.start_afk_timer(channel_id, lobby)
 
     def start_afk_timer(self, channel_id: int, lobby) -> None:
         """Starts an AFK timer task for the current player."""
