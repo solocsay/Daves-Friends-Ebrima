@@ -10,7 +10,6 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 from discord.app_commands.errors import CommandInvokeError
-from discord.ui import View
 
 from models.deck import Color
 from models.game_state import GameError, Phase
@@ -376,7 +375,9 @@ class UnoCog(commands.Cog):
                     return
 
                 minutes, seconds = divmod(total_sec, 60)
-                timer_embed.description = f"Lobby expires in **{minutes}:{seconds:02d}** if nobody joins."
+                timer_embed.description = (
+                    f"Lobby expires in **{minutes}:{seconds:02d}** if nobody joins."
+                )
 
                 try:
                     await timer_msg.edit(embed=timer_embed)
@@ -406,7 +407,8 @@ class UnoCog(commands.Cog):
                 await timer_msg.delete()
             except discord.HTTPException:
                 pass
-        except Exception as e:
+
+        except (discord.HTTPException, discord.Forbidden, GameError) as e:
             print(f"Solo lobby timer error: {e}")
 
     def restart_solo_lobby_timer(self, lobby):
