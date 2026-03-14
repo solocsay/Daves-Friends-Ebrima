@@ -41,6 +41,9 @@ class UnoCog(commands.Cog):
         # Initialize renderer
         self._renderer = Renderer(self.lobby_service, self.game_service)
 
+        # Solo timer
+        self._solo_lobby_timers: dict[int, asyncio.Task] = {}
+
     @app_commands.command(name="create", description="Create a lobby in this channel.")
     async def create(self, interaction: discord.Interaction) -> None:
         """
@@ -352,28 +355,45 @@ class UnoCog(commands.Cog):
         if channel is None or not getattr(lobby, "main_message", None):
             return
 
+        timer_embed = discord.Embed(
+            title="⏳ Solo Lobby Timer",
+            description="Lobby expires in **10** seconds if nobody joins.",
+            color=discord.Color.orange(),
+        )
+
+        try:
+            timer_msg = await channel.send(embed=timer_embed)
+        except discord.HTTPException:
+            return
+
         total_sec = 10
         interval = 1
 
         try:
-            timer_embed = discord.Embed(
-                title="⏳ Lobby Timer",
-                description=f"Lobby expires in **{total_sec}** seconds if nobody joins.",
-                color=discord.Color.red(),
-            )
-            timer_msg = await channel.send(embed=timer_embed)
-
             while total_sec > 0:
                 if len(lobby.game.players()) > 1:
-                    await timer_msg.delete()  # remove timer if someone joins
+                    await timer_msg.delete()
                     return
 
                 minutes, seconds = divmod(total_sec, 60)
-                timer_embed.description = f"⏳ Lobby expires in **{minutes}:{seconds:02d}** if nobody joins."
-                await timer_msg.edit(embed=timer_embed)
+                timer_embed.description = f"Lobby expires in **{minutes}:{seconds:02d}** if nobody joins."
+
+                try:
+                    await timer_msg.edit(embed=timer_embed)
+                except discord.HTTPException:
+                    pass
 
                 await asyncio.sleep(interval)
                 total_sec -= interval
+
+            self.lobby_service.disband_lobby(lobby.channel_id, lobby.user)
+
+            timer_embed.title = "🕒 Lobby Expired"
+            timer_embed.description = "The solo lobby has expired due to inactivity."
+            try:
+                await timer_msg.edit(embed=timer_embed)
+            except discord.HTTPException:
+                pass
 
             try:
                 main_msg = await channel.fetch_message(lobby.main_message)
@@ -381,17 +401,28 @@ class UnoCog(commands.Cog):
             except (discord.NotFound, discord.HTTPException):
                 pass
 
-            expired_embed = discord.Embed(
-                title="🕒 Lobby Expired",
-                description="The lobby timed out due to inactivity.",
-                color=discord.Color.dark_red(),
-            )
-            await timer_msg.edit(embed=expired_embed)
-
-            self.lobby_service.disband_lobby(lobby.channel_id, lobby.user)
-
+        except asyncio.CancelledError:
+            try:
+                await timer_msg.delete()
+            except discord.HTTPException:
+                pass
         except Exception as e:
             print(f"Solo lobby timer error: {e}")
+
+    def restart_solo_lobby_timer(self, lobby):
+        """
+        Starts the solo timer if there's 1 player, cancels it otherwise.
+        """
+        cid = lobby.channel_id
+
+        task = self._solo_lobby_timers.get(cid)
+        if task and not task.done():
+            task.cancel()
+
+        if len(lobby.game.players()) == 1:
+            self._solo_lobby_timers[cid] = asyncio.create_task(
+                self.start_solo_lobby_timer(lobby)
+            )
 
 async def setup(bot: commands.Bot) -> None:
     """

@@ -78,6 +78,11 @@ class LobbyUI(Interactions):
             return
 
         lobby = self.lobby_service.get_lobby(cid)
+
+        cog = interaction.client.get_cog("UnoCog")
+        if cog:
+            cog.restart_solo_lobby_timer(lobby)
+
         await self._renderer.update_from_interaction(interaction, lobby)
 
     @discord.ui.button(label="🚀 Start Game", style=discord.ButtonStyle.success)

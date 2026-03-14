@@ -46,7 +46,6 @@ class LobbyService:
         """
 
         lobby = self._lobby_repo.get(channel_id)
-        lobby.channel_id = channel_id
         lobby.game.start_game()
 
         return self._lobby_repo.get(channel_id)
