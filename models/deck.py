@@ -195,7 +195,5 @@ def format_card(card: Card | None) -> str:
             card_str = "🌈 ➕4 DRAW 4"
         case Wild(color):
             card_str = "🌈 WILD"
-        case _:
-            card_str = str(card)
 
     return card_str

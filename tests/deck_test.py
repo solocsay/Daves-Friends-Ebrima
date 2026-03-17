@@ -12,6 +12,7 @@ from models.deck import (
     Skip,
     Wild,
     can_play_card,
+    format_card,
 )
 
 
@@ -88,3 +89,16 @@ def test_play_on_wilds():
 
     assert can_play_card(Wild(Color.BLUE), Number(Color.BLUE, 10))
     assert not can_play_card(Wild(Color.BLUE), Number(Color.RED, 10))
+
+
+def test_format_card():
+    """
+    Test cards are formatted properly.
+    """
+    assert format_card(None) == "(none)"
+    assert format_card(Number(Color.RED, 1)) == "🟥 1️⃣"
+    assert format_card(Skip(Color.BLUE)) == "🟦 ⏭️ SKIP"
+    assert format_card(Reverse(Color.YELLOW)) == "🟨 🔄 REVERSE"
+    assert format_card(DrawTwo(Color.GREEN)) == "🟩 ➕2 DRAW 2"
+    assert format_card(DrawFourWild(Color.RED)) == "🌈 ➕4 DRAW 4"
+    assert format_card(Wild(Color.RED)) == "🌈 WILD"
