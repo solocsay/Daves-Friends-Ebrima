@@ -4,3 +4,4 @@ __pycache__/
 .vscode
 uno_discord.egg-info/
 .venv/
+.coverage
