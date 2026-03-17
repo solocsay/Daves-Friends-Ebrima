@@ -129,6 +129,7 @@ class GameState:
             "turn_index": 0,  # index representing which users turn it is
             "turn_count": 0,  # counter representing the current turn #
             "afk_deadline": None,  # AFK timer deadline (UTC datetime)
+            "afk_counts": {},  # track AFK skips
             "uno_grace_until": 0.0,  # timestamp when others may start catching
             "uno_vulnerable": None,  # user_id who has 1 card and can be caught
             "direction": Direction.CLOCKWISE,
@@ -220,6 +221,7 @@ class GameState:
             raise GameError("Player already in lobby.")
         self.state["players"].append(user_id)
         self.state["hands"][user_id] = []
+        self.state["afk_counts"][user_id] = 0
 
     def remove_player(self, user_id: int) -> None:
         """
@@ -246,6 +248,8 @@ class GameState:
 
         players.remove(user_id)
         self.state["hands"].pop(user_id, None)
+
+        self.state["afk_counts"].pop(user_id, None)
 
         # If only one player remains, end the game
         if len(players) <= 1:
