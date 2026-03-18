@@ -564,9 +564,6 @@ class GameState:
             seconds=seconds
         )
 
-    def _clear_afk_deadline(self) -> None:
-        self.state["afk_deadline"] = None
-
     def _clear_uno(self) -> None:
         self.state["uno_vulnerable"] = None
         self.state["uno_grace_until"] = 0.0
