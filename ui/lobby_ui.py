@@ -43,13 +43,7 @@ class LobbyUI(Interactions):
         try:
             self.lobby_service.join_lobby(cid, interaction.user)
         except GameError as e:
-            embed = self.lobby_views.error_embed(
-                "Game Join" if e.title == "" else e.title, str(e)
-            )
-            await interaction.response.send_message(
-                embeds=[embed],
-                ephemeral=e.private,
-            )
+            await self._renderer.lobby_views.render_error("Game Join", e, interaction)
             return
 
         lobby = self.lobby_service.get_lobby(cid)
@@ -68,13 +62,8 @@ class LobbyUI(Interactions):
         try:
             self.lobby_service.leave_lobby(cid, interaction.user)
         except GameError as e:
-            embed = self.lobby_views.error_embed(
-                "Leave" if e.title == "" else e.title, str(e), True
-            )
-            await interaction.response.send_message(
-                embeds=[embed],
-                ephemeral=e.private,
-            )
+            await self._renderer.lobby_views.render_error("Leave", e, interaction)
+
             return
 
         lobby = self.lobby_service.get_lobby(cid)
@@ -95,24 +84,16 @@ class LobbyUI(Interactions):
 
         cid = require_channel_id(interaction)
 
-        try:
-            lobby = self.lobby_service.get_lobby(cid)
-            if interaction.user.id != lobby.user.id:
-                raise GameError(
-                    "You must be the host in order to start the game!",
-                    private=True,
-                    title="Must be host",
-                )
-            self.lobby_service.start_lobby(cid)
-        except GameError as e:
-            embed = self.lobby_views.error_embed(
-                "Start" if e.title == "" else e.title, str(e), True
+        lobby = self.lobby_service.get_lobby(cid)
+        if interaction.user.id != lobby.user.id:
+            embed = self._renderer.lobby_views.error_embed(
+                "Must be host",
+                "You must be the host in order to start the game!",
             )
-            await interaction.response.send_message(
-                embeds=[embed],
-                ephemeral=e.private,
-            )
+            await interaction.followup.send(embeds=[embed], ephemeral=True)
             return
+
+        self.lobby_service.start_lobby(cid)
 
         await self._renderer.update_from_interaction(interaction, lobby)
 
@@ -150,10 +131,9 @@ class LobbyUI(Interactions):
         try:
             self.lobby_service.disband_lobby(cid, interaction.user)
         except GameError as e:
-            embed = self.lobby_views.error_embed(
-                "Must Be Host" if e.title == "" else e.title, str(e)
+            await self._renderer.lobby_views.render_error(
+                "Must Be Host", e, interaction
             )
-            await interaction.response.send_message(embeds=[embed], ephemeral=e.private)
             return
 
         embed = self.lobby_views.update_embed(

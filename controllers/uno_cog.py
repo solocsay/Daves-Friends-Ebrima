@@ -165,7 +165,6 @@ class UnoCog(commands.Cog):
         except (discord.Forbidden, discord.HTTPException):
             pass
 
-    # pylint: disable=duplicate-code
     @app_commands.command(name="kick", description="Kick a player from the game.")
     async def kick(self, interaction: discord.Interaction, player: discord.Member):
         """
@@ -193,18 +192,13 @@ class UnoCog(commands.Cog):
             await self._kick_player(lobby, player.id, channel_id=cid)
 
         except GameError as e:
-            embed = self._renderer.lobby_views.error_embed(
-                "Game Error" if e.title == "" else e.title, str(e)
-            )
-            await interaction.followup.send(embeds=[embed], ephemeral=e.private)
+            await self._renderer.lobby_views.render_error("Game Error", e, interaction)
             return
 
         await interaction.followup.send(
             f"{player.display_name} was kicked from the game.", ephemeral=True
         )
 
-    # pylint: disable=protected-access
-    # _kick_player is called _kick_player to differentiate from game_state.py's kick_player
     async def _kick_player(
         self, lobby, player_id: int, afk: bool = False, channel_id: int | None = None
     ):

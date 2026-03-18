@@ -71,6 +71,17 @@ class BaseViews:
         """
         return self._build_embed("ERROR: " + title, desc, self._error_color, gif)
 
+    async def render_error(self, msg, error, interaction):
+        """
+        Creates an error embed and follows up to an interaction with it.
+        """
+        embed = self.error_embed(
+            msg if error.title == "" else error.title,
+            str(error),
+        )
+
+        await interaction.followup.send(embeds=[embed], ephemeral=error.private)
+
     # pylint: disable=too-many-arguments
     # pylint: disable=too-many-positional-arguments
     def _build_embed(
