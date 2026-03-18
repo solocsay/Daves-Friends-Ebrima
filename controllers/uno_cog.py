@@ -73,6 +73,7 @@ class UnoCog(commands.Cog):
             pass
 
         lobby.channel_id = cid
+        self.lobby_service.save()
         asyncio.create_task(self.start_solo_lobby_timer(lobby))
 
     @app_commands.command(
@@ -117,15 +118,12 @@ class UnoCog(commands.Cog):
                     private=True,
                 )
 
-            result = self.game_service.play_card(
+            self.game_service.play_card(
                 cid,
                 interaction.user.id,
                 card_index,
                 Color[color.value.upper()] if color else None,
             )
-
-            # store last move so the embed can show it
-            lobby.last_move = result
 
         except GameError as e:
             embed = self._renderer.lobby_views.error_embed(
@@ -210,7 +208,7 @@ class UnoCog(commands.Cog):
         game = lobby.game
 
         try:
-            game.kick_player(player_id)
+            self.game_service.kick_player(cid, player_id)
 
             await self._renderer.update_by_message_id(
                 self.bot, cid, lobby.main_message, lobby
@@ -291,16 +289,14 @@ class UnoCog(commands.Cog):
             and game.state["turn_count"] == start_turn_count
         ):
             try:
-                game.draw_and_pass(player_id)
-
-                # update last move
-                lobby.last_move = {"type": "draw", "player": player_id}
+                self.game_service.draw(channel_id, player_id)
 
                 # increment AFK count
                 game.state["afk_counts"][player_id] = (
                     game.state["afk_counts"].get(player_id, 0) + 1
                 )
                 afk_count = game.state["afk_counts"][player_id]
+                self.lobby_service.save()
 
                 channel = self.bot.get_channel(channel_id)
                 if channel and afk_count <= 4:

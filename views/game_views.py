@@ -73,7 +73,7 @@ class GameViews(BaseViews):
 
         embed.add_field(name="Players", value=players_turn, inline=False)
 
-        if hasattr(lobby, "last_move"):
+        if lobby.last_move is not None:
             move = lobby.last_move
 
             if isinstance(move, dict) and move.get("type") == "draw":

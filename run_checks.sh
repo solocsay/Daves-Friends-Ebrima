@@ -1,8 +1,13 @@
 #!/bin/sh
 
+set -e
+
 python3 -m venv env
 
-./env/bin/pip3 install --editable .["test"]
+./env/bin/python -m pip install -r requirements.txt pytest black pylint
+
+export PYLINTHOME="$(pwd)/.pylint.d"
+mkdir -p "$PYLINTHOME"
 
 if ! ./env/bin/pytest; then
    echo -e "\e[31mpytest error!\e[0m"

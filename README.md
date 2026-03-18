@@ -57,10 +57,16 @@ To run the bot, execute `uno_discord`.
 
 To test the bot, ensure that you're in the virtual environment and install test dependencies:
 ```sh
-pip install --editable .["test"]
+pip install --editable '.[test]'
 ```
 
-To run the tests, run `pytest` in the virtual environment. This will run everything except the fuzzer, which can be run with `python3 tests/fuzz.py`.
+To run the tests, run `pytest` in the virtual environment. This will run everything except the fuzzer.
+
+If you want to run the fuzzer too, install the fuzzing dependencies separately:
+```sh
+pip install --editable '.[fuzz]'
+python3 tests/fuzz.py
+```
 
 **Note**: It is recommended to run `./run_checks.sh` before commiting code. This will run pytest, pylint, and check the formatting, telling you what went wrong before your code hits CI.
 

@@ -18,6 +18,12 @@ class LobbyService:
     def __init__(self, repo: LobbyRepository):
         self._lobby_repo = repo
 
+    def save(self) -> None:
+        """
+        Persists the current lobby state to disk.
+        """
+        self._lobby_repo.save()
+
     def create_lobby(self, channel_id: int, user: User) -> Lobby:
         """
         Creates a lobby in a channel.
@@ -37,6 +43,7 @@ class LobbyService:
 
         self._lobby_repo.set(channel_id, user, GameState())
         self._lobby_repo.get(channel_id).game.add_player(user.id)
+        self.save()
 
         return self._lobby_repo.get(channel_id)
 
@@ -47,6 +54,7 @@ class LobbyService:
 
         lobby = self._lobby_repo.get(channel_id)
         lobby.game.start_game()
+        self.save()
 
         return self._lobby_repo.get(channel_id)
 
@@ -79,6 +87,7 @@ class LobbyService:
             )
 
         game.add_player(user.id)
+        self.save()
 
         return lobby
 
@@ -109,6 +118,7 @@ class LobbyService:
             )
 
         game.remove_player(user.id)
+        self.save()
 
         return lobby
 

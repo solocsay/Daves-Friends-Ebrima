@@ -115,9 +115,6 @@ class GameUI(Interactions):
         try:
             self.game_service.draw(interaction.channel_id, interaction.user.id)
 
-            # record draw as last move so the embed can show it
-            self.lobby.last_move = {"type": "draw", "player": interaction.user.id}
-
         except GameError as e:
             embed = self._renderer.lobby_views.error_embed(
                 "Not your turn!" if e.title == "" else e.title, str(e)

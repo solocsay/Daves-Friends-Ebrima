@@ -4,12 +4,18 @@ Fuzzes some parts of the bot code using atheris.
 
 #!/usr/bin/python3
 
-import atheris
+import sys
 
-with atheris.instrument_imports():
+try:
+    import atheris
+except ImportError:  # pragma: no cover - only hit when fuzz deps are absent
+    atheris = None
     from models import deck
     from models.deck import Color
-    import sys
+else:
+    with atheris.instrument_imports():
+        from models import deck
+        from models.deck import Color
 
 
 def create_random_card(fdp):
@@ -54,5 +60,18 @@ def test_deck(data):
     deck.can_play_card(card1, card2)
 
 
-atheris.Setup(sys.argv, test_deck)
-atheris.Fuzz()
+def main():
+    """
+    Runs the atheris fuzzer when the optional fuzz dependency is installed.
+    """
+    if atheris is None:
+        raise SystemExit(
+            "Install fuzz deps first with: pip install --editable '.[fuzz]'"
+        )
+
+    atheris.Setup(sys.argv, test_deck)
+    atheris.Fuzz()
+
+
+if __name__ == "__main__":
+    main()
