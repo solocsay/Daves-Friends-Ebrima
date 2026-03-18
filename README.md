@@ -62,6 +62,8 @@ pip install --editable .["test"]
 
 To run the tests, run `pytest` in the virtual environment. This will run everything except the fuzzer, which can be run with `python3 tests/fuzz.py`.
 
+**Note**: It is recommended to run `./run_checks.sh` before commiting code. This will run pytest, pylint, and check the formatting, telling you what went wrong before your code hits CI.
+
 ## Usage
 
 After adding the Uno bot to a Discord server, you can start your own Uno games!
