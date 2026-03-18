@@ -305,6 +305,52 @@ class UnoCog(commands.Cog):
             f"{player.display_name} was kicked from the game.", ephemeral=True
         )
 
+    @app_commands.command(name="leave", description="Leave the current UNO game or lobby.")
+    async def leave(self, interaction: discord.Interaction) -> None:
+        """
+        Lets a player leave the game. Works in both LOBBY and PLAYING phases.
+        """
+        await interaction.response.defer(ephemeral=True)
+
+        cid = require_channel_id(interaction)
+
+        try:
+            lobby = self.lobby_service.get_lobby(cid)
+
+            if interaction.user.id not in lobby.game.players():
+                raise GameError("You are not in this game.", private=True, title="Not In Game")
+
+            phase = self.game_service.leave_player(cid, interaction.user.id)
+
+        except GameError as e:
+            embed = self._renderer.lobby_views.error_embed(
+                "Error" if e.title == "" else e.title, str(e)
+            )
+            await interaction.followup.send(embeds=[embed], ephemeral=True)
+            return
+
+        await interaction.followup.send("You have left the game.", ephemeral=True)
+
+        channel = self.bot.get_channel(cid)
+        if channel:
+            await channel.send(f"<@{interaction.user.id}> has left the game.")
+
+        await self._renderer.update_by_message_id(
+            self.bot, cid, lobby.main_message, lobby
+        )
+
+        if phase == Phase.LOBBY:
+            self.restart_solo_lobby_timer(lobby, reset_deadline=True)
+
+        elif phase == Phase.PLAYING:
+            if lobby.game.phase() == Phase.FINISHED:
+                if channel:
+                    await channel.send("Game ended due to a lack of players.")
+            else:
+                self.start_afk_timer(cid, lobby)
+                await self.dm_current_player_turn(lobby, cid)
+
+    
     async def _kick_player(
         self, lobby, player_id: int, afk: bool = False, channel_id: int | None = None
     ):
