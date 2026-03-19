@@ -350,7 +350,6 @@ class UnoCog(commands.Cog):
                 self.start_afk_timer(cid, lobby)
                 await self.dm_current_player_turn(lobby, cid)
 
-    
     async def _kick_player(
         self, lobby, player_id: int, afk: bool = False, channel_id: int | None = None
     ):
