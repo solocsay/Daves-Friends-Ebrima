@@ -252,6 +252,36 @@ class UnoCog(commands.Cog):
         await interaction.response.send_message(embed=embed)
 
     @app_commands.command(
+        name="help",
+        description="Show the main bot commands and what they do.",
+    )
+    async def help(self, interaction: discord.Interaction) -> None:
+        """
+        Sends a help embed explaining the main UNO bot commands.
+        """
+        embed = discord.Embed(
+            title="UNO Bot Help",
+            description="Here are the main commands you can use in this bot.",
+            color=discord.Color.green(),
+        )
+
+        embed.add_field(
+            name="Main Commands",
+            value=(
+                "`/create` — create a game lobby\n"
+                "`/join` — join a game\n"
+                "`/play` — play a card on your turn\n"
+                "`/leave` — leave the current game\n"
+                "`/kick` — host removes a player from the game\n"
+                "`/tutorial` — learn how to play UNO and use the bot\n"
+                "`/help` — view this help message"
+            ),
+            inline=False,
+        )
+
+        await interaction.response.send_message(embed=embed)
+
+    @app_commands.command(
         name="play",
         description="Play a card from your hand on your turn (index starts at 0).",
     )
