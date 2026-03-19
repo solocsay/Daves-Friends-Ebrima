@@ -185,8 +185,8 @@ class UnoCog(commands.Cog):
         self.restart_solo_lobby_timer(lobby, reset_deadline=True)
 
     @app_commands.command(
-    name="tutorial",
-    description="Learn how to play UNO and use the bot.",
+        name="tutorial",
+        description="Learn how to play UNO and use the bot.",
     )
     async def tutorial(self, interaction: discord.Interaction) -> None:
         """
@@ -213,7 +213,7 @@ class UnoCog(commands.Cog):
         embed.add_field(
             name="How to Play",
             value=(
-                "On your turn, play a card that matches the current " 
+                "On your turn, play a card that matches the current "
                 "color or number. If you cannot play, draw a card."
             ),
             inline=False,
