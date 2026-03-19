@@ -158,7 +158,7 @@ class GameUI(Interactions):
         hand = self.lobby.game.hand(interaction.user.id)
         embed = self._renderer.hand_views.hand_embed(
             hand,
-            optional_message=f"""This is your new hand after your latest action.
+            optional_message=f"""This is your new hand after drawing a card.
             Link to Game: https://discord.com/channels/{guild}/{cid}/{self.lobby.main_message}""",
         )
         try:
