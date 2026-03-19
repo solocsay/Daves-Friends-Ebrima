@@ -93,7 +93,6 @@ class GameService:
         """
         lobby = self.lobby_service.get_lobby(channel_id)
         phase = lobby.game.phase()
-        
         if phase == Phase.LOBBY:
             lobby.game.remove_player(user_id)
         elif phase == Phase.PLAYING:
