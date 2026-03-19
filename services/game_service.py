@@ -7,7 +7,7 @@ from typing import Any
 from discord.interactions import User
 
 from models.deck import Color
-from models.game_state import Phase
+from models.game_state import Phase, GameError
 from services.lobby_service import LobbyService
 
 
@@ -99,11 +99,7 @@ class GameService:
         elif phase == Phase.PLAYING:
             lobby.game.kick_player(user_id)
         else:
-            from models.game_state import GameError
             raise GameError("You can't leave a finished game.")
     
         self.lobby_service.save()
         return phase
-
-
- 
