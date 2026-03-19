@@ -152,6 +152,19 @@ class GameUI(Interactions):
         if cog is not None:
             await cog.dm_current_player_turn(self.lobby, interaction.channel_id)
             cog.start_afk_timer(interaction.channel_id, self.lobby)
+        guild = interaction.guild.id
+        cid = interaction.channel_id
+        user = await interaction.client.fetch_user(interaction.user.id)
+        hand = self.lobby.game.hand(interaction.user.id)
+        embed = self._renderer.hand_views.hand_embed(
+            hand,
+            optional_message=f"""This is your new hand after drawing a card.
+            Link to Game: https://discord.com/channels/{guild}/{cid}/{self.lobby.main_message}""",
+        )
+        try:
+            await user.send(embed=embed)
+        except (discord.Forbidden, discord.HTTPException):
+            pass
 
     @discord.ui.button(
         label="🛑 End Game",
