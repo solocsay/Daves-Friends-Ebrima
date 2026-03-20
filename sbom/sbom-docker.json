@@ -16,7 +16,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/aiohappyeyeballs-2.6.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/aiohappyeyeballs@2.6.1": {
@@ -35,7 +35,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/aiohttp-3.13.3.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/aiohttp@3.13.3": {
@@ -55,7 +55,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/aiosignal-1.4.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/aiosignal@1.4.0": {
@@ -74,7 +74,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/astroid-4.0.4.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/astroid@4.0.4": {
@@ -93,7 +93,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/atheris-3.0.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/atheris@3.0.0": {
@@ -112,7 +112,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/attrs-25.4.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/attrs@25.4.0": {
@@ -132,7 +132,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/black-26.1.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/black@26.1.0": {
@@ -140,6 +140,7 @@
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
+            "pkg:pypi/uno-discord@1.0",
             "pkg:pypi/pytokens@0.4.1"
           ]
         }
@@ -151,7 +152,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/click-8.3.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/click@8.3.1": {
@@ -165,13 +166,34 @@
         }
       }
     },
+    "uno-bot:/app/env/lib/python3.12/site-packages/coverage-7.13.5.dist-info/METADATA": {
+      "name": "uno-bot:/app/env/lib/python3.12/site-packages/coverage-7.13.5.dist-info/METADATA",
+      "file": {
+        "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/coverage-7.13.5.dist-info/METADATA"
+      },
+      "metadata": {
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
+      },
+      "resolved": {
+        "pkg:pypi/coverage@7.13.5": {
+          "package_url": "pkg:pypi/coverage@7.13.5",
+          "relationship": "direct",
+          "scope": "runtime",
+          "dependencies": [
+            "pkg:pypi/pluggy@1.6.0",
+            "pkg:pypi/pytest-cov@7.0.0",
+            "pkg:pypi/discord-py@2.6.4"
+          ]
+        }
+      }
+    },
     "uno-bot:/app/env/lib/python3.12/site-packages/dill-0.4.1.dist-info/METADATA": {
       "name": "uno-bot:/app/env/lib/python3.12/site-packages/dill-0.4.1.dist-info/METADATA",
       "file": {
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/dill-0.4.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/dill@0.4.1": {
@@ -190,7 +212,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/discord-2.3.2.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/discord@2.3.2": {
@@ -209,7 +231,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/discord/bin/libopus-0.x64.dll"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       }
     },
     "uno-bot:/app/env/lib/python3.12/site-packages/discord/bin/libopus-0.x86.dll": {
@@ -218,7 +240,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/discord/bin/libopus-0.x86.dll"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       }
     },
     "uno-bot:/app/env/lib/python3.12/site-packages/discord_py-2.6.4.dist-info/METADATA": {
@@ -227,7 +249,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/discord_py-2.6.4.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/discord-py@2.6.4": {
@@ -246,7 +268,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/dotenv-0.9.9.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/dotenv@0.9.9": {
@@ -265,7 +287,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/frozenlist-1.8.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/frozenlist@1.8.0": {
@@ -285,7 +307,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/idna-3.11.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/idna@3.11": {
@@ -304,7 +326,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/iniconfig-2.3.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/iniconfig@2.3.0": {
@@ -323,7 +345,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/isort-8.0.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/isort@8.0.0": {
@@ -342,7 +364,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/mccabe-0.7.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/mccabe@0.7.0": {
@@ -361,7 +383,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/multidict-6.7.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/multidict@6.7.1": {
@@ -381,7 +403,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/mypy_extensions-1.1.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/mypy-extensions@1.1.0": {
@@ -400,7 +422,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/packaging-26.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/packaging@26.0": {
@@ -420,7 +442,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/pathspec-1.0.4.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/pathspec@1.0.4": {
@@ -439,7 +461,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/pip-24.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/pip@24.0": {
@@ -455,7 +477,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/platformdirs-4.9.2.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/platformdirs@4.9.2": {
@@ -475,7 +497,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/pluggy-1.6.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/pluggy@1.6.0": {
@@ -483,7 +505,8 @@
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
-            "pkg:pypi/pytest@9.0.2"
+            "pkg:pypi/pytest@9.0.2",
+            "pkg:pypi/pytest-cov@7.0.0"
           ]
         }
       }
@@ -494,7 +517,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/propcache-0.4.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/propcache@0.4.1": {
@@ -514,7 +537,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/pygments-2.19.2.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/pygments@2.19.2": {
@@ -533,7 +556,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/pylint-4.0.5.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/pylint@4.0.5": {
@@ -549,7 +572,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/pytest-9.0.2.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/pytest@9.0.2": {
@@ -561,7 +584,28 @@
             "pkg:pypi/uno-discord@1.0",
             "pkg:pypi/pluggy@1.6.0",
             "pkg:pypi/pytokens@0.4.1",
+            "pkg:pypi/pytest-cov@7.0.0",
             "pkg:pypi/pathspec@1.0.4",
+            "pkg:pypi/discord-py@2.6.4"
+          ]
+        }
+      }
+    },
+    "uno-bot:/app/env/lib/python3.12/site-packages/pytest_cov-7.0.0.dist-info/METADATA": {
+      "name": "uno-bot:/app/env/lib/python3.12/site-packages/pytest_cov-7.0.0.dist-info/METADATA",
+      "file": {
+        "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/pytest_cov-7.0.0.dist-info/METADATA"
+      },
+      "metadata": {
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
+      },
+      "resolved": {
+        "pkg:pypi/pytest-cov@7.0.0": {
+          "package_url": "pkg:pypi/pytest-cov@7.0.0",
+          "relationship": "direct",
+          "scope": "runtime",
+          "dependencies": [
+            "pkg:pypi/pytokens@0.4.1",
             "pkg:pypi/discord-py@2.6.4"
           ]
         }
@@ -573,7 +617,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/python_dotenv-1.2.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/python-dotenv@1.2.1": {
@@ -592,7 +636,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/pytokens-0.4.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/pytokens@0.4.1": {
@@ -611,7 +655,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/tomlkit-0.14.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/tomlkit@0.14.0": {
@@ -630,7 +674,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/typing_extensions-4.15.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/typing-extensions@4.15.0": {
@@ -655,7 +699,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/uno_discord-1.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/uno-discord@1.0": {
@@ -671,7 +715,7 @@
         "source_location": "uno-bot:/app/env/lib/python3.12/site-packages/yarl-1.22.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/yarl@1.22.0": {
@@ -690,7 +734,7 @@
         "source_location": "uno-bot:/app/uno_discord.egg-info/PKG-INFO"
       },
       "metadata": {
-        "syft:filesystem": "sha256:2f95ab0e0cb0e81b725c5b96f643dea14288fc8ea63d21b22847c49910087267"
+        "syft:filesystem": "sha256:be0fc7fe8f24d7ee5e1c0469fc4fcb2e8ad8df95f2637b6eeb634f6bf61e3638"
       },
       "resolved": {
         "pkg:pypi/uno-discord@1.0": {
@@ -754,7 +798,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/aiohappyeyeballs-2.6.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/aiohappyeyeballs@2.6.1": {
@@ -773,7 +817,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/aiohttp-3.13.3.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/aiohttp@3.13.3": {
@@ -781,7 +825,7 @@
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
-            "pkg:pypi/discord-py@2.7.0"
+            "pkg:pypi/discord-py@2.7.1"
           ]
         }
       }
@@ -792,7 +836,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/aiosignal-1.4.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/aiosignal@1.4.0": {
@@ -805,21 +849,20 @@
         }
       }
     },
-    "uno-bot:/usr/local/lib/python3.13/site-packages/attrs-25.4.0.dist-info/METADATA": {
-      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/attrs-25.4.0.dist-info/METADATA",
+    "uno-bot:/usr/local/lib/python3.13/site-packages/attrs-26.1.0.dist-info/METADATA": {
+      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/attrs-26.1.0.dist-info/METADATA",
       "file": {
-        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/attrs-25.4.0.dist-info/METADATA"
+        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/attrs-26.1.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
-        "pkg:pypi/attrs@25.4.0": {
-          "package_url": "pkg:pypi/attrs@25.4.0",
+        "pkg:pypi/attrs@26.1.0": {
+          "package_url": "pkg:pypi/attrs@26.1.0",
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
-            "pkg:pypi/pytest@9.0.2",
             "pkg:pypi/aiohttp@3.13.3"
           ]
         }
@@ -831,7 +874,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/audioop_lts-0.2.2.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/audioop-lts@0.2.2": {
@@ -839,7 +882,7 @@
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
-            "pkg:pypi/discord-py@2.7.0"
+            "pkg:pypi/discord-py@2.7.1"
           ]
         }
       }
@@ -850,7 +893,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/discord-2.3.2.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/discord@2.3.2": {
@@ -869,7 +912,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/discord/bin/libopus-0.x64.dll"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       }
     },
     "uno-bot:/usr/local/lib/python3.13/site-packages/discord/bin/libopus-0.x86.dll": {
@@ -878,20 +921,20 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/discord/bin/libopus-0.x86.dll"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       }
     },
-    "uno-bot:/usr/local/lib/python3.13/site-packages/discord_py-2.7.0.dist-info/METADATA": {
-      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/discord_py-2.7.0.dist-info/METADATA",
+    "uno-bot:/usr/local/lib/python3.13/site-packages/discord_py-2.7.1.dist-info/METADATA": {
+      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/discord_py-2.7.1.dist-info/METADATA",
       "file": {
-        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/discord_py-2.7.0.dist-info/METADATA"
+        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/discord_py-2.7.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
-        "pkg:pypi/discord-py@2.7.0": {
-          "package_url": "pkg:pypi/discord-py@2.7.0",
+        "pkg:pypi/discord-py@2.7.1": {
+          "package_url": "pkg:pypi/discord-py@2.7.1",
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
@@ -906,7 +949,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/dotenv-0.9.9.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/dotenv@0.9.9": {
@@ -925,7 +968,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/frozenlist-1.8.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/frozenlist@1.8.0": {
@@ -945,7 +988,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/idna-3.11.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/idna@3.11": {
@@ -953,26 +996,7 @@
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
-            "pkg:pypi/yarl@1.22.0"
-          ]
-        }
-      }
-    },
-    "uno-bot:/usr/local/lib/python3.13/site-packages/iniconfig-2.3.0.dist-info/METADATA": {
-      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/iniconfig-2.3.0.dist-info/METADATA",
-      "file": {
-        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/iniconfig-2.3.0.dist-info/METADATA"
-      },
-      "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
-      },
-      "resolved": {
-        "pkg:pypi/iniconfig@2.3.0": {
-          "package_url": "pkg:pypi/iniconfig@2.3.0",
-          "relationship": "direct",
-          "scope": "runtime",
-          "dependencies": [
-            "pkg:pypi/pytest@9.0.2"
+            "pkg:pypi/yarl@1.23.0"
           ]
         }
       }
@@ -983,7 +1007,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/multidict-6.7.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/multidict@6.7.1": {
@@ -991,27 +1015,8 @@
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
-            "pkg:pypi/yarl@1.22.0",
+            "pkg:pypi/yarl@1.23.0",
             "pkg:pypi/aiohttp@3.13.3"
-          ]
-        }
-      }
-    },
-    "uno-bot:/usr/local/lib/python3.13/site-packages/packaging-26.0.dist-info/METADATA": {
-      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/packaging-26.0.dist-info/METADATA",
-      "file": {
-        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/packaging-26.0.dist-info/METADATA"
-      },
-      "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
-      },
-      "resolved": {
-        "pkg:pypi/packaging@26.0": {
-          "package_url": "pkg:pypi/packaging@26.0",
-          "relationship": "direct",
-          "scope": "runtime",
-          "dependencies": [
-            "pkg:pypi/pytest@9.0.2"
           ]
         }
       }
@@ -1086,32 +1091,13 @@
         "syft:filesystem": "sha256:e809c639448eba986b1efe0be830e86421373934461d79c3286785e2d9a294bd"
       }
     },
-    "uno-bot:/usr/local/lib/python3.13/site-packages/pluggy-1.6.0.dist-info/METADATA": {
-      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/pluggy-1.6.0.dist-info/METADATA",
-      "file": {
-        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/pluggy-1.6.0.dist-info/METADATA"
-      },
-      "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
-      },
-      "resolved": {
-        "pkg:pypi/pluggy@1.6.0": {
-          "package_url": "pkg:pypi/pluggy@1.6.0",
-          "relationship": "direct",
-          "scope": "runtime",
-          "dependencies": [
-            "pkg:pypi/pytest@9.0.2"
-          ]
-        }
-      }
-    },
     "uno-bot:/usr/local/lib/python3.13/site-packages/propcache-0.4.1.dist-info/METADATA": {
       "name": "uno-bot:/usr/local/lib/python3.13/site-packages/propcache-0.4.1.dist-info/METADATA",
       "file": {
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/propcache-0.4.1.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/propcache@0.4.1": {
@@ -1119,64 +1105,23 @@
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
-            "pkg:pypi/yarl@1.22.0",
+            "pkg:pypi/yarl@1.23.0",
             "pkg:pypi/aiohttp@3.13.3"
           ]
         }
       }
     },
-    "uno-bot:/usr/local/lib/python3.13/site-packages/pygments-2.19.2.dist-info/METADATA": {
-      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/pygments-2.19.2.dist-info/METADATA",
+    "uno-bot:/usr/local/lib/python3.13/site-packages/python_dotenv-1.2.2.dist-info/METADATA": {
+      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/python_dotenv-1.2.2.dist-info/METADATA",
       "file": {
-        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/pygments-2.19.2.dist-info/METADATA"
+        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/python_dotenv-1.2.2.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
-        "pkg:pypi/pygments@2.19.2": {
-          "package_url": "pkg:pypi/pygments@2.19.2",
-          "relationship": "direct",
-          "scope": "runtime",
-          "dependencies": [
-            "pkg:pypi/pytest@9.0.2"
-          ]
-        }
-      }
-    },
-    "uno-bot:/usr/local/lib/python3.13/site-packages/pytest-9.0.2.dist-info/METADATA": {
-      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/pytest-9.0.2.dist-info/METADATA",
-      "file": {
-        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/pytest-9.0.2.dist-info/METADATA"
-      },
-      "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
-      },
-      "resolved": {
-        "pkg:pypi/pytest@9.0.2": {
-          "package_url": "pkg:pypi/pytest@9.0.2",
-          "relationship": "direct",
-          "scope": "runtime",
-          "dependencies": [
-            "pkg:pypi/discord-py@2.7.0",
-            "pkg:pypi/pluggy@1.6.0",
-            "pkg:pypi/uno-discord@1.0",
-            "pkg:pypi/idna@3.11"
-          ]
-        }
-      }
-    },
-    "uno-bot:/usr/local/lib/python3.13/site-packages/python_dotenv-1.2.1.dist-info/METADATA": {
-      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/python_dotenv-1.2.1.dist-info/METADATA",
-      "file": {
-        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/python_dotenv-1.2.1.dist-info/METADATA"
-      },
-      "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
-      },
-      "resolved": {
-        "pkg:pypi/python-dotenv@1.2.1": {
-          "package_url": "pkg:pypi/python-dotenv@1.2.1",
+        "pkg:pypi/python-dotenv@1.2.2": {
+          "package_url": "pkg:pypi/python-dotenv@1.2.2",
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
@@ -1191,7 +1136,7 @@
         "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/uno_discord-1.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
         "pkg:pypi/uno-discord@1.0": {
@@ -1201,17 +1146,17 @@
         }
       }
     },
-    "uno-bot:/usr/local/lib/python3.13/site-packages/yarl-1.22.0.dist-info/METADATA": {
-      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/yarl-1.22.0.dist-info/METADATA",
+    "uno-bot:/usr/local/lib/python3.13/site-packages/yarl-1.23.0.dist-info/METADATA": {
+      "name": "uno-bot:/usr/local/lib/python3.13/site-packages/yarl-1.23.0.dist-info/METADATA",
       "file": {
-        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/yarl-1.22.0.dist-info/METADATA"
+        "source_location": "uno-bot:/usr/local/lib/python3.13/site-packages/yarl-1.23.0.dist-info/METADATA"
       },
       "metadata": {
-        "syft:filesystem": "sha256:c4490ac4449186ab93d61086fbe9bef11179ba6acb96df8ee746c62ad3d0dcff"
+        "syft:filesystem": "sha256:2e898a027789a2513be03294c9a47d0c180f281c223dabd0a47c158730e5bd30"
       },
       "resolved": {
-        "pkg:pypi/yarl@1.22.0": {
-          "package_url": "pkg:pypi/yarl@1.22.0",
+        "pkg:pypi/yarl@1.23.0": {
+          "package_url": "pkg:pypi/yarl@1.23.0",
           "relationship": "direct",
           "scope": "runtime",
           "dependencies": [
@@ -5940,5 +5885,5 @@
       }
     }
   },
-  "scanned": "2026-02-28T18:29:21-08:00"
+  "scanned": "2026-03-19T18:19:01-07:00"
 }
