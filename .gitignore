@@ -7,3 +7,4 @@ uno_discord.egg-info/
 .coverage
 data/
 .pylint.d/
+build/
