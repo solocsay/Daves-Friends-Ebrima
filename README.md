@@ -74,6 +74,8 @@ python3 tests/fuzz.py
 
 After adding the Uno bot to a Discord server, you can start your own Uno games!
 
+To get information about the commands, use `/help`. To get a tutorial on how to play the game, use `/tutorial`. 
+
 ### Lobby
 
 `/create` creates a new lobby and a message displaying information about the lobby.
